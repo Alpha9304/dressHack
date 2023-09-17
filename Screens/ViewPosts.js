@@ -5,9 +5,9 @@
 //need to be able to see only your posts (on profile or here)
 //restyle text and stuff
 
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, ScrollView, StatusBar, View, Image, Pressable} from 'react-native';
-
+import Button from '../components/Button'
 import {LinearGradient} from 'expo-linear-gradient';
 import { Ionicons } from "@expo/vector-icons";
 import * as MediaLibrary from 'expo-media-library'
@@ -20,9 +20,30 @@ const profImageEx = require('../assets/images/prof_ex.jpg');
 const partyImageEx = require('../assets/images/party_ex.jpg');
 const PlaceholderImage = require('../assets/images/blank_image.png');
 
-const ViewPosts = () => {
+const ViewPosts =  () => {
 
   const [fontsLoaded, setLoaded] = useState(false);
+   const route = useRoute();
+   const [selectedImage, setSelectedImage] = useState(null);
+   const [label, setSelectedLabel] = useState(null);
+   const [liked1, setLiked1] = useState(false);
+   const [liked2, setLiked2] = useState(false);
+   const [liked3, setLiked3] = useState(false);
+   const [liked4, setLiked4] = useState(false);
+   
+   const [likes4, setLikes4] = useState(225);
+   const [likes1, setLikes1] = useState(313);
+   const [likes2, setLikes2] = useState(200);
+   const [likes3, setLikes3] = useState(325);
+
+  useEffect(() => {
+    if (route.params?.image) {
+      setSelectedImage(route.params.image);
+    }
+    if (route.params?.label) {
+      setSelectedLabel(route.params.label);
+    }
+  }, [route.params]);
   
 
   const loadFonts = async () => {
@@ -35,20 +56,6 @@ const ViewPosts = () => {
   }
 
   loadFonts();
-
-  //for if user selected a post
-  const [selectedImage, setSelectedImage] = useState(null);
-
-  //liked state and count
-  const [liked1, setLiked1] = useState(false);
-  const [liked2, setLiked2] = useState(false);
-  const [liked3, setLiked3] = useState(false);
-  const [liked4, setLiked4] = useState(false);
-  
-  const [likes4, setLikes4] = useState(225);
-  const [likes1, setLikes1] = useState(313);
-  const [likes2, setLikes2] = useState(200);
-  const [likes3, setLikes3] = useState(325);
 
 
 
@@ -66,10 +73,13 @@ const ViewPosts = () => {
       setSelectedImage(post);
     }
   }
+
+  const Back = () => {
+    navigation.navigate('Analyzer');
+  };
  
   
   getPostAsync();
-  const route = useRoute();
   const postStyle = route.params?.label;
   const postIm = route.params?.image;
   if(selectedImage != null) {
@@ -91,6 +101,7 @@ const ViewPosts = () => {
 
 
             <View style={styles.container}>
+
               <View style={styles.imageContainer}>
                 
               <ImageViewer
@@ -107,7 +118,7 @@ const ViewPosts = () => {
                 </View>
 
                 <View style = {styles.leftTextContainer}>
-                  <Text style= {styles.text}>Style: {post}</Text>
+                  <Text style= {styles.text}>Style: {label}</Text>
                 </View>
 
                 <View style = {styles.descTextContainer}>
@@ -460,7 +471,7 @@ const styles = StyleSheet.create({
     paddingTop: 15,
   },
   likeText: {
-    fontSize: 15,
+    fontSize: 14,
     color: '#fc3fc4',
     paddingLeft: 5,
   },

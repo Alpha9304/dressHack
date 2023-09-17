@@ -67,7 +67,7 @@ const ProfileScreen = () => {
     }, []);
 
     return (
-        <LinearGradient colors={['#000000', '#2c106e', '#71319e']} style={styles.linearGradient}>
+        <LinearGradient colors={['#123EA6','#0947DA','#6D2FEC','#71319e']} style={styles.linearGradient}>
         <ScrollView contentContainerStyle={styles.container}>
             <Text style={styles.title}>User Information</Text>
             {user && (

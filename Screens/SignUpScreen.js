@@ -73,7 +73,7 @@ const SignUpScreen= () => {
 
     return (
         //wrap whole thing in scroll view
-        <LinearGradient colors={['#000000', '#2c106e', '#71319e']} style={styles.linearGradient}>
+        <LinearGradient colors={['#123EA6','#0947DA','#6D2FEC','#71319e']} style={styles.linearGradient}>
             <View style={styles.root}>
                     <Text style = {styles.title}>
                         Create Account
@@ -121,23 +121,26 @@ const SignUpScreen= () => {
                             <CustomButton
                                 text="Sign In With Facebook"
                                 onPress={onSignInFacebook}
-                                bgColor='#87cefa'
-                                fgColor='#4765A9'
+                                bgColor= '#87cefa'
+                                fgColor= '#4765A9'
+                                type = "HANDJET"
 
                             />
 
                             <CustomButton
                                 text="Sign In With Google"
                                 onPress={onSignInGoogle}
-                                bgColor='#ffb6c1'
-                                fgColor='#DD4D44'
+                                bgColor='#8FF9F1'
+                                fgColor='#0888AA'
+                                type = "HANDJET"
                             />
 
                             <CustomButton
                                 text="Sign In With Apple"
                                 onPress={onSignInApple}
-                                bgColor='#d3d3d3'
-                                fgColor='#363636'
+                                bgColor='#DAB4FF'
+                            fgColor='#363636'
+                            type = "HANDJET"
                             />
 
                             <CustomButton
@@ -202,7 +205,7 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 24, 
         fontWeight: 'bold', 
-        color: '#9400d3',
+        color: '#000000',
         margin: 10, 
     }
 

@@ -64,6 +64,21 @@ export default function Button({ label, theme, onPress }) {
         </View>
         );
       }
+    } else if (theme === "back") {
+      if(fontsLoaded){
+        return (
+          <View
+          style={[styles.buttonContainer, { borderWidth: 0, borderColor: "#3446eb", borderRadius: 18, paddingBottom: 10 }]}
+          >
+            <TouchableOpacity
+              style={[styles.button, { backgroundColor: "#3446eb" }]}
+              onPress={onPress}
+            >
+              <Text style={[styles.buttonLabel, { color: "#ffffff" }]}>{label}</Text>
+            </TouchableOpacity>
+        </View>
+        );
+      }
     }
 
 
@@ -101,4 +116,12 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontFamily: 'Handjet',
   },
+  backContainer: {
+    width: 80,
+    height: 68,
+    marginHorizontal: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 3,
+  }
 });

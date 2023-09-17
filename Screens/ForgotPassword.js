@@ -26,14 +26,13 @@ const ForgotPassword = () => {
     }
 
     const onForgotPasswordPressed = () => {
-        console.warn("Sign in");
 
     }
 
 
     return (
         //wrap whole thing in scroll view
-        <LinearGradient colors={['#000000', '#2c106e', '#71319e']} style={styles.linearGradient}>
+        <LinearGradient colors={['#123EA6','#0947DA','#6D2FEC','#71319e']} style={styles.linearGradient}>
             <View style={styles.root}>
                 <Text style={styles.title}>
                     Reset Your Password

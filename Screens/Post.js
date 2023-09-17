@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image, SafeAreaView, Modal, TextInput, Dimensions} from 'react-native';
+import { StyleSheet, Text, View, Image, SafeAreaView, Modal, TextInput, Dimensions, ScrollView} from 'react-native';
 import ImageViewer from '../components/ImageViewer';
 import Button from '../components/Button'
 import {LinearGradient} from 'expo-linear-gradient';
@@ -12,11 +12,13 @@ import * as MediaLibrary from 'expo-media-library'
 const PlaceholderImage = require('../assets/images/blank_image.png');
 const { width } = Dimensions.get("window");
 
-export default function Post() {
+export default function Post({ route }) {
+  const passedImage = route.params?.image;
+  const passedLabel = route.params?.label;
 
-
-  const [selectedImage, setSelectedImage] = useState(null);
   const navigation = useNavigation();
+  const [selectedImage, setSelectedImage] = useState(passedImage || null);
+
 
   // This is to manage Modal State
   const [isModalVisible, setModalVisible] = useState(false);
@@ -60,7 +62,7 @@ export default function Post() {
 
   const Post = () => {
     if(selectedImage != null) {
-      navigation.navigate('ViewPosts', {postText: inputValue});
+      navigation.navigate('ViewPosts', { postText: passedLabel, image: selectedImage })
       setSelectedImage(null);
     } else {
       alert('Please select an image.');
@@ -71,8 +73,11 @@ export default function Post() {
 
   //the page with the buttons
   return (
+    <ScrollView style={{flex: 1}}>
     <LinearGradient colors = {['#123EA6','#0947DA','#6D2FEC','#71319e']} style = {styles.linearGradient}>
       <View style={styles.container}>
+
+      
         <View style = {styles.imageContainer}>
           <ImageViewer
             placeholderImageSource={PlaceholderImage}
@@ -113,6 +118,7 @@ export default function Post() {
         <StatusBar style="dark" />
       </View>
     </LinearGradient>
+    </ScrollView>
   );
 }
 

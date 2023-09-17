@@ -4,7 +4,7 @@ import axios from 'axios';
 import * as Location from 'expo-location';
 import { useNavigation } from '@react-navigation/native';
 import {LinearGradient} from 'expo-linear-gradient';
-
+import ButtonX from '../components/Button'
 
 export default function Model({ route }) {
     const imageUri = route.params?.imageUri;
@@ -116,9 +116,11 @@ export default function Model({ route }) {
 
     
     return (
-        <LinearGradient colors={['#93acff', '#93acff', '#71319e']} style={styles.linearGradient}>
+        <LinearGradient colors={['#75d8ff', '#669aed', '#71319e']} style={styles.linearGradient}>
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            {image && <Image source={{ uri: image }} style={{ width: 256, height: 256 }} />}
+            <View style={{paddingBottom: 15}}>
+            {image && <Image source={{ uri: image }} style={{ width: 256, height: 256, borderRadius: 18 }} />}
+            </View>
 
             {actualPrediction && Array.isArray(actualPrediction[0]) && actualPrediction[0].map((prob, index) => (
                 <Text key={index}>Actual Model - {getLabel('actual', index)}: {(prob ? (prob * 100).toFixed(2) : 'N/A')}%</Text>
@@ -131,9 +133,11 @@ export default function Model({ route }) {
             {weatherPrediction && Array.isArray(weatherPrediction[0]) && weatherPrediction[0].map((prob, index) => ( 
                 <Text key={index}>Weather Model - {getLabel('weather', index)}: {(prob ? (prob * 100).toFixed(2) : 'N/A')}%</Text>
             ))}
-            <Button title="Make Predictions" onPress={getPrediction} />
-            <Button title="Make a Post" onPress={makePost} />
-            <Button title="Take another picture" onPress={goBack} />
+              <View style={{paddingTop: 10}}>
+            <ButtonX theme = "choose" label="Make Predictions" onPress={getPrediction} />
+            </View>
+            <ButtonX theme = "choose" label="Make a Post" onPress={makePost} />
+            <ButtonX theme = "choose" label="Take another picture" onPress={goBack} />
         </View>
         </LinearGradient>
     );
