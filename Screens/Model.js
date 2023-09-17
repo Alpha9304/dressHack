@@ -75,7 +75,7 @@ export default function Model({ route }) {
     };
 
     const goBack = () => {
-        navigation.navigate('Analyzer')
+     navigation.goBack();
     };
     
 
@@ -104,7 +104,7 @@ export default function Model({ route }) {
 
         try {
             console.log("Sending prediction request...");
-            const response = await axios.post('http://10.203.222.79:5001/predict', formData);
+            const response = await axios.post('http://10.203.28.219:5001/predict', formData);
             console.log("Received response:", response.data);
             setActualPrediction(response.data.predictions_model);
             setColorPrediction(response.data.predictions_color_model);

@@ -8,7 +8,7 @@ import * as ImagePicker from 'expo-image-picker';
 import CustomButton from '../components/CustomButton';
 
 
-const Analyzer = () => {
+export default function Analyzer() {
     const [hasCameraPermission, setHasCameraPermission] = useState(null);
     const [image, setImage] = useState(null); 
     const [type, setType]  = useState(Camera.Constants.Type.back);
@@ -34,9 +34,9 @@ const Analyzer = () => {
             aspect: [4, 3],
             quality: 1,
         });
-
-        if (!result.canceled && result.assets.length > 0) {
-            setImageUri(result.assets[0].uri);
+    
+        if (!result.cancelled) {
+            setImage(result.uri);
         }
     };
 
@@ -56,7 +56,6 @@ const Analyzer = () => {
         if(image){
             try{
                 await MediaLibrary.createAssetAsync(image);
-                alert('Picture saved!');
                 navigation.navigate('Model', { imageUri: image });
                 setImage(null);
             }catch(e){
@@ -117,7 +116,6 @@ const Analyzer = () => {
     );
 }
 
-export default Analyzer
 
 const styles = StyleSheet.create({
     container: {
@@ -131,4 +129,5 @@ const styles = StyleSheet.create({
         borderRadius: 20,
     }
 })
+
 
