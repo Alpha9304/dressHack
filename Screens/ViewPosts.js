@@ -87,9 +87,6 @@ const ViewPosts =  () => {
       selectedImage = postIm;
     }
 
-    if(postStyle == null) {
-      //postStyle = '';
-    }
     const postText = route.params?.postText
     if(fontsLoaded) {
       return (
